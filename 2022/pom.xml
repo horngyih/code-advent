@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ubicompsystem.experiments</groupId>
+        <artifactId>code-advent</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>code-advent-2022</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>day-1</module>
+    </modules>
+</project>
