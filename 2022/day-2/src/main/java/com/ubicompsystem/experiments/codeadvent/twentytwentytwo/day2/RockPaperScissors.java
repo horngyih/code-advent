@@ -14,6 +14,14 @@ public enum RockPaperScissors {
             }
             return 0;
         }
+
+        public RockPaperScissors win(){
+            return PAPER;
+        }
+
+        public RockPaperScissors lose(){
+            return SCISSORS;
+        }
     },
     PAPER(2){
         public int match(RockPaperScissors play){
@@ -27,6 +35,14 @@ public enum RockPaperScissors {
             }
             return 0;
         }
+
+        public RockPaperScissors win(){
+            return SCISSORS;
+        }
+
+        public RockPaperScissors lose(){
+            return ROCK;
+        }
     }, SCISSORS(3){
         public int match(RockPaperScissors play){
             if( play != null ){
@@ -39,6 +55,14 @@ public enum RockPaperScissors {
             }
             return 0;
         }
+
+        public RockPaperScissors win(){
+            return ROCK;
+        }
+
+        public RockPaperScissors lose(){
+            return PAPER;
+        }
     };
 
     public int score;
@@ -48,22 +72,42 @@ public enum RockPaperScissors {
     }
 
     public abstract int match(RockPaperScissors play);
+    public abstract RockPaperScissors win();
+    public abstract RockPaperScissors lose();
+    public RockPaperScissors draw(){
+        return this;
+    }
+
+    public String toString(){
+        return this.name();
+    }
 
     public static RockPaperScissors translate( String str ){
         if( str != null && !"".equals(str.trim()) ){
             switch(str.trim()){
                 case "A":
-                case "X":
                     return ROCK;
                 case "B":
-                case "Y":
                     return PAPER;
                 case "C":
-                case "Z":
                     return SCISSORS;
             }
         }
 
+        return null;
+    }
+
+    public static RockPaperScissors translateStrategy( RockPaperScissors play, String str ){
+        if( play!= null && str != null && !"".equals(str.trim()) ){
+            switch(str.trim()){
+                case "X":
+                    return play.lose();
+                case "Y":
+                    return play.draw();
+                case "Z":
+                    return play.win();
+            }
+        }
         return null;
     }
 }
