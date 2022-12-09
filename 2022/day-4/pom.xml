@@ -4,17 +4,10 @@
 
     <parent>
         <groupId>com.ubicompsystem.experiments</groupId>
-        <artifactId>code-advent</artifactId>
+        <artifactId>code-advent-2022</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>code-advent-2022</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>day-1</module>
-		<module>day-2</module>
-		<module>day-3</module>
-    </modules>
+    <artifactId>2022-day-4</artifactId>
 </project>

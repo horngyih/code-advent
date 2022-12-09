@@ -10,11 +10,8 @@ public class RockPaperScissorsTest {
     public void translateTest(){
         System.out.println( "==== Translate RockPaperScissors Test ====\n" );
         translationTest( "A", ROCK );
-        translationTest( "X", ROCK );
         translationTest( "B", PAPER );
-        translationTest( "Y", PAPER );
         translationTest( "C", SCISSORS );
-        translationTest( "Z", SCISSORS );
 
         System.out.println( "\n==== END Translate RockPaperScissors Test ====\n" );
     }
@@ -35,6 +32,42 @@ public class RockPaperScissorsTest {
         matchTest( SCISSORS, PAPER, 6 );
         System.out.println( "\n==== END Match RockPaperScissors Test ====\n" );
     }
+
+	@Test
+	public void strategyTest(){
+		System.out.println( "==== Translate Strategy RockPaperScissors Test ====\n" );
+
+		strategyTest( ROCK, "X", SCISSORS );
+		strategyTest( ROCK, "Y", ROCK );
+		strategyTest( ROCK, "Z", PAPER );
+
+		strategyTest( PAPER, "X", ROCK );
+		strategyTest( PAPER, "Y", PAPER );
+		strategyTest( PAPER, "Z", SCISSORS );
+
+		strategyTest( SCISSORS, "X", PAPER );
+		strategyTest( SCISSORS, "Y", SCISSORS );
+		strategyTest( SCISSORS, "Z", ROCK );
+
+		System.out.println( "\n==== END Translate Strategy RockPaperScissors Test ====\n" );
+	}
+
+	public void strategyTest( RockPaperScissors play, String strategy, RockPaperScissors expectedPlay ){
+		String strategyName = "";
+		switch(strategy){
+			case "X":
+				strategyName = "lose";
+				break;
+			case "Y":
+				strategyName = "draw";
+				break;
+			case "Z":
+				strategyName = "win";
+				break;
+		}
+		System.out.println( String.format( "%s %s %s", expectedPlay.name(), strategyName, play.name() ) );
+		assertEquals( "Should play the expected strategy play", expectedPlay, translateStrategy(play, strategy) );
+	}
 
     public void matchTest( RockPaperScissors play1, RockPaperScissors play2, int expected ){
         assertNotNull( "Should have a non-null play1", play1 );
