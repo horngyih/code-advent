@@ -29,4 +29,9 @@ public class AssignmentUtil {
 		return (firstSet.size()>=secondSet.size())?firstSet.containsAll(secondSet):secondSet.containsAll(firstSet);
 	}
 
+	public static boolean overlap( Set<Integer> firstSet, Set<Integer> secondSet ){
+		if( firstSet == null || secondSet == null ) return false;
+		return !Collections.disjoint( firstSet, secondSet );
+	}
+
 }

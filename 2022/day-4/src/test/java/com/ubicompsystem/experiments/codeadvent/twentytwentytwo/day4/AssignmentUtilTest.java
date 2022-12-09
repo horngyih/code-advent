@@ -18,11 +18,18 @@ public class AssignmentUtilTest {
 
 	@Test
 	public void encompassTest(){
-		encompassTest(parseRangeAsSet("6-6"), parseRangeAsSet("7-7"), false);
-		encompassTest(parseRangeAsSet("6-7"), parseRangeAsSet("7-8"), false);
-		encompassTest(parseRangeAsSet("6-8"), parseRangeAsSet("6-8"), true);
-		encompassTest(parseRangeAsSet("2-9"), parseRangeAsSet("6-8"), true);
-		encompassTest(parseRangeAsSet("6-8"), parseRangeAsSet("2-9"), true);
+		encompassTest("6-6", "7-7", false);
+		encompassTest("6-7", "7-8", false);
+		encompassTest("6-8", "6-8", true);
+		encompassTest("2-9", "6-8", true);
+		encompassTest("6-8", "2-9", true);
+	}
+
+	@Test
+	public void overlapTest(){
+		overlapTest( "6-6", "7-7", false );
+		overlapTest( "4-9", "5-7", true );
+		overlapTest( "2-7", "6-8", true );
 	}
 
 	protected void rangeTest( String range, Set<Integer> expectedSet ){
@@ -33,9 +40,19 @@ public class AssignmentUtilTest {
 		assertTrue( "Should return the expected entries", rangeSet.containsAll(expectedSet) );
 	}
 
-	public void encompassTest( Set<Integer> firstSet, Set<Integer> secondSet, boolean expected ){
+	public void encompassTest( String firstRange, String secondRange, boolean expected ){
+		Set<Integer> firstSet = parseRangeAsSet(firstRange);
+		Set<Integer> secondSet = parseRangeAsSet(secondRange);
 		boolean encompass = completeEncompass(firstSet, secondSet);
 		System.out.println(String.format("%s encompasses %s => %s", firstSet.toString(), secondSet.toString(), "" + encompass ));
 		assertEquals( "Should return the expected encompassing state", expected, encompass );
+	}
+
+	public void overlapTest( String firstRange, String secondRange, boolean expected ){
+		Set<Integer> firstSet = parseRangeAsSet(firstRange);
+		Set<Integer> secondSet = parseRangeAsSet(secondRange);
+		boolean overlap = overlap(firstSet, secondSet);
+		System.out.println(String.format("%s overlaps %s => %s", firstSet.toString(), secondSet.toString(), "" + overlap ));
+		assertEquals( "Should return the expected overlap state", expected, overlap );
 	}
 }
