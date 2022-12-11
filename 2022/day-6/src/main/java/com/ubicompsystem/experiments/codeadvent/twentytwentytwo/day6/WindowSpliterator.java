@@ -22,7 +22,7 @@ public class WindowSpliterator implements Spliterator<String> {
 		this.sourceIterator = Objects.requireNonNull(source).iterator();
 		this.windowSize = window;
 		this.size = calculateSize(source, window);
-		this.currentIndex = -1;
+		this.currentIndex = 0;
 	}
 
 	@Override

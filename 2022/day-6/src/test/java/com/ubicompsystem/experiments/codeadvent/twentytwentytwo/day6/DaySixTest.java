@@ -14,10 +14,20 @@ public class DaySixTest {
 	public void defaultTest() throws Exception {
 		System.out.println( "==== Day 6 : Tuning Trouble ====\n" );
 
+		final int windowSize = 4;
+		System.out.printf( "Marker Packet size = %d\n", windowSize);
 		String input = input();
-		WindowSpliterator.windowed(Arrays.asList(input.split("")), 4)
+		WindowSpliterator.windowed(Arrays.asList(input.split("")), windowSize)
 			.map(Packet::new)
-			.filter(packet->packet.packetChars.size()==4)
+			.filter(packet->packet.packetChars.size()==windowSize)
+			.findFirst()
+		.ifPresent(System.out::println);
+
+		final int newWindowSize = 14;
+		System.out.printf( "Marker Packet size = %d\n", newWindowSize);
+		WindowSpliterator.windowed(Arrays.asList(input.split("")), newWindowSize)
+			.map(Packet::new)
+			.filter(packet->packet.packetChars.size()==newWindowSize)
 			.findFirst()
 		.ifPresent(System.out::println);
 
